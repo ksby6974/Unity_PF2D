@@ -12,8 +12,8 @@ public class Player_MainMove : MonoBehaviour
 
     //속도, 방향
     [Header("Move_Input")]
-    public float moveSpeed = 16f;    // 캐릭터 이동 속도
-    public float JumpForce = 12f;   // 캐릭터 점프
+    public float moveSpeed = 12f;    // 캐릭터 이동 속도
+    public float JumpForce = 4f;   // 캐릭터 점프
     private float moveInput;        // 캐릭터의 방향 및 인풋 데이터 저장
 
     public Transform startTransform;    // 캐릭터가 시작할 위치 저장
