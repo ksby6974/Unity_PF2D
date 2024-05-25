@@ -13,10 +13,10 @@ public class Player_MainMove : MonoBehaviour
     //속도, 방향
     [Header("Move_Input")]
     public float moveSpeed = 12f;    // 캐릭터 이동 속도
-    public float JumpForce = 4f;   // 캐릭터 점프
+    public float JumpForce = 8f;   // 캐릭터 점프
     private float moveInput;        // 캐릭터의 방향 및 인풋 데이터 저장
 
-    public Transform startTransform;    // 캐릭터가 시작할 위치 저장
+    //public Transform startTransform;    // 캐릭터가 시작할 위치 저장
     public Rigidbody2D rigidbody2D;     // 물리(강체) 기능을 제어하는 컴포넌트 
 
     [Header("Jump")]
@@ -37,7 +37,7 @@ public class Player_MainMove : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
 
-        Debug.Log($"Start 확인했습니다.");
+        Debug.Log($"Player Control Start");
         InitialPlayerStatus();
     }
 
@@ -69,7 +69,7 @@ public class Player_MainMove : MonoBehaviour
     {
         // 현재 내 위치 <= 새로운 x,y 저장하는 데이터 타입
         //transform.position = new Vector2(transform.position.x, 10);
-        transform.position = startTransform.position;
+        //transform.position = startTransform.position;
         rigidbody2D.velocity = Vector2.zero;
         facingRight = true;
         spriteRenderer.flipX = false;
@@ -98,7 +98,6 @@ public class Player_MainMove : MonoBehaviour
     private void CollisionCheck()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
-
     }
 
     /// <summary>
@@ -109,6 +108,8 @@ public class Player_MainMove : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
 
         JumpButton();
+
+        Debug.Log($"THIS : {isGrounded}");
     }
 
     private void HandleFlip()

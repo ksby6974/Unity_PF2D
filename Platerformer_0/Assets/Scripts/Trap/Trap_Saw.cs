@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Tarp_Saw : Trap
+public class Trap_Saw : Trap
 {
     public Animator anim;
     public Transform[] movePositions;     //톱니바퀴가 이동할 위치를 저장할 변수
@@ -57,8 +57,6 @@ public class Tarp_Saw : Trap
             // 다음 목표 지점이 없으면 0으로 초기화
         }
     }
-
-
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         // 플레이어 태그 보유 여부 검사
@@ -68,14 +66,15 @@ public class Tarp_Saw : Trap
         }
     }
 
-    /*
-    protected override void OnTriggerEnter2D(Collision2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collider)
     {
         // 플레이어 태그 보유 여부 검사
-        if (collision.CompareTag("Player"))
+        if (collider.CompareTag("Player"))
         {
             Debug.Log("Player 함정 피격 (trigger 충돌)");
+
+            //플레이어 파괴
+            Destroy(collider.gameObject);
         }
     }
-    */
 }

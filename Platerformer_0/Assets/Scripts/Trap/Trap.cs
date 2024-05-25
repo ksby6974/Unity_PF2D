@@ -5,7 +5,7 @@ using UnityEngine;
 // 충돌하기 위해서는 두 물체 중 한 물체는 Rigidbody(2D)를 컴포넌트로 소유필요
 // 두 물체 전부 다 Collider를 갖고 있어야 한다.
 // 플레이어와 충돌하면 충돌했을 시점에 이벤트 작동한다
-public class Trap : MonoBehaviour
+public class Trap: MonoBehaviour
 {
     // 충돌 이벤트를 작성할 때 모든 오브젝트를 대상으로 작성할 일은 거의 없다
     // 성능적인 면에서도 비효율적
@@ -27,14 +27,12 @@ public class Trap : MonoBehaviour
         }
     }
 
-    /*
-    protected void OnTriggerEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         // 플레이어 태그 보유 여부 검사
-        if (collision.CompareTag("Player"))
+        if (collider.CompareTag("Player"))
         {
             Debug.Log("Player 함정 피격 (trigger 충돌)");
         }
     }
-    */
 }

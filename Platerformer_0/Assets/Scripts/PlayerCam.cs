@@ -14,7 +14,17 @@ public class PlayerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //(GameObject) = 가져와서 Prefab생성 PlayerTransform 위치가 필요
+        //playerTransform = transform;
+
         //transform = camera, 벡터의 합, 빼기 -> A - B : B에서 출발해서 A까지 이동하는 화살표
+        offset = transform.position - playerTransform.position;
+
+        fixedYPosition = transform.position.y;
+    }
+
+    public void setOffset()
+    {
         offset = transform.position - playerTransform.position;
     }
 
