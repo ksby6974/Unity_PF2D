@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public GameObject GasObject;
     private int PlayerHP = 100000;
     private int Damage = 1;
     public bool isGasState = false;
@@ -21,6 +23,8 @@ public class Room : MonoBehaviour
             Damage = 0; 
             isGasState = true;
             Debug.Log($"Player와 접촉 시작 (Enter) : {isGasState}");
+
+            GasObject.SetActive(true);
         }
     }
 
@@ -32,6 +36,8 @@ public class Room : MonoBehaviour
             //PlayerController <- 다른 클래스에서 나의 클래스를 어떻게 접근?
             isGasState = false;
             Debug.Log($"Player가 벗어남 (Exit) : {isGasState}");
+
+            GasObject.SetActive(false);
         }
     }
 
@@ -39,7 +45,7 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player") && isStayOn)
         {
-            Debug.Log($"Player가 접촉중 (Stay)");
+            //Debug.Log($"Player가 접촉중 (Stay)");
         }
     }
 

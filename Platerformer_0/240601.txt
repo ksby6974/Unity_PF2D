@@ -1,0 +1,7 @@
+화면에 보이게 하는 방식 : Renderer(이미지를 화면에 그려주는 작업)
+
+Rendering PipeLine -> Bullet in, URP, HDRP => DirectXn openGL, Vulkan
+
+
+
+

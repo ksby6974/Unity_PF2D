@@ -109,7 +109,7 @@ public class Player_MainMove : MonoBehaviour
 
         JumpButton();
 
-        Debug.Log($"THIS : {isGrounded}");
+        //Debug.Log($"THIS : {isGrounded}");
     }
 
     private void HandleFlip()
