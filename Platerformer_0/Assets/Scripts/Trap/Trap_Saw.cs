@@ -7,20 +7,34 @@ public class Trap_Saw : Trap
 {
     public Animator anim;
     public Transform[] movePositions;     //톱니바퀴가 이동할 위치를 저장할 변수
-    public float speed = 5f;
+    public float speed = 10f;
     public int moveindex = 0;
     public bool OnGoing = true;
+    public bool IsTrapOn = true;
+    public float fStopTime = 0.1f;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+
         isWorking = true;
     }
 
     private void Update()
     {
         anim.SetBool("isWorking",isWorking);
-        MoveTrap();
+
+        if (IsTrapOn == true)
+        {
+            MoveTrap();
+        }
+    }
+
+    IEnumerator CoMoveTrap()
+    {
+        IsTrapOn = false;
+        yield return new WaitForSeconds(fStopTime);
+        IsTrapOn = true;
     }
 
     private void MoveTrap()
@@ -33,30 +47,19 @@ public class Trap_Saw : Trap
         // 함정이 목표한 지점까지 도착했는가
         if (Vector3.Distance(transform.position, movePositions[moveindex].position) <= 0.1f)
         {
-            if (moveindex == 0)
-            {
-                OnGoing = true;
-            }
+            moveindex += 1;
+            StartCoroutine(CoMoveTrap());
+            Debug.Log($"【moveindex {moveindex}】: 도달");
+        }
 
-            if (OnGoing == true)
-            {
-                moveindex += 1;
-            }
-            else
-            {
-                moveindex -= 1;
-            }
-
-            if (movePositions.Length <= moveindex)
-            {
-                moveindex = movePositions.Length -1;
-                OnGoing = false;
-            }
-
-            // 다음 목표 지점으로 변경
-            // 다음 목표 지점이 없으면 0으로 초기화
+        // 다음 목표 지점으로 변경
+        // 다음 목표 지점이 없으면 0으로 초기화
+        if (movePositions.Length <= moveindex)
+        {
+            moveindex = 0;
         }
     }
+
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         // 플레이어 태그 보유 여부 검사

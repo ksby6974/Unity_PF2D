@@ -12,6 +12,7 @@ public class Player_MainMove : MonoBehaviour
 
     //속도, 방향
     [Header("Move_Input")]
+    public bool bIsMoveOn = false;
     public float moveSpeed = 12f;    // 캐릭터 이동 속도
     public float JumpForce = 8f;   // 캐릭터 점프
     private float moveInput;        // 캐릭터의 방향 및 인풋 데이터 저장
@@ -32,7 +33,6 @@ public class Player_MainMove : MonoBehaviour
     public Animator animator;
     private bool isMove;
 
-
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -51,7 +51,22 @@ public class Player_MainMove : MonoBehaviour
         HandleFlip();
         PlayerMove();
         FallDownCheck();
+        IsMoving();
     }
+
+    void IsMoving()
+    {
+        //
+        if (moveInput != 0)
+        {
+            bIsMoveOn = false;
+        }
+        else
+        {
+            bIsMoveOn = true;
+        }
+    }
+
 
     /// <summary>
     /// 낙사

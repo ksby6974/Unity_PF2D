@@ -21,6 +21,8 @@ public class PlayerCam : MonoBehaviour
         offset = transform.position - playerTransform.position;
 
         fixedYPosition = transform.position.y;
+
+        transform.position = playerTransform.position;
     }
 
     public void setOffset()
