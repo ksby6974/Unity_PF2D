@@ -30,6 +30,8 @@ public class Player_MainMove : MonoBehaviour
     private bool facingRight = true;
     private int facingDirection = 1;
 
+    [SerializeField] ParticleController particleController;
+
     public Animator animator;
     private bool isMove;
 
@@ -113,6 +115,8 @@ public class Player_MainMove : MonoBehaviour
     private void CollisionCheck()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
+ 
+    
     }
 
     /// <summary>
@@ -120,6 +124,11 @@ public class Player_MainMove : MonoBehaviour
     /// </summary>
     private void HandleInput()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            particleController.PlayParticle();
+        }
+
         moveInput = Input.GetAxis("Horizontal");
 
         JumpButton();
