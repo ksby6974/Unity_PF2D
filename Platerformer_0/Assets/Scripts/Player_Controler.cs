@@ -30,10 +30,14 @@ public class Player_MainMove : MonoBehaviour
     private bool facingRight = true;
     private int facingDirection = 1;
 
+    // Particle
     [SerializeField] ParticleController particleController;
-
     public Animator animator;
     private bool isMove;
+
+    // Audio
+
+
 
     void Start()
     {
@@ -126,6 +130,7 @@ public class Player_MainMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            // 파티클 사운드 출력
             particleController.PlayParticle();
         }
 
@@ -168,6 +173,9 @@ public class Player_MainMove : MonoBehaviour
 
     private void Jump()
     {
+        // 점프 사운드 출력
+        AudioManager.instance.PlaySFX(2);
+
         // 점프 : Y position _ rigidbody Y velocity를 점프 파워만큼
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, JumpForce);
     }
