@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     {
         score += Time.deltaTime;
 
-        Debug.Log($"점수 : {score}");
+        //Debug.Log($"점수 : {score}");
 
         if (score > PlayerPrefs.GetFloat(GameData.BestScore))
         {
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        return $"선택한 난이도 : {name}";
+        return $"{name}";
     }
 
     public void SaveGameInfo()

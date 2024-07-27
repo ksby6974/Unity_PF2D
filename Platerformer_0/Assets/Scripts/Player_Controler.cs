@@ -38,6 +38,15 @@ public class Player_MainMove : MonoBehaviour
     // Audio
 
 
+    //
+    [Header("Stat")]
+    public int currentHp;
+    public int maxHp = 3;
+
+    private void Awake()
+    {
+         currentHp = maxHp;
+    }
 
     void Start()
     {
@@ -130,8 +139,16 @@ public class Player_MainMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            // 파티클 사운드 출력
-            particleController.PlayParticle();
+            // 파티클 출력
+            if (particleController == null)
+            {
+                Debug.LogWarning($"인스턴스 없음 : 파티클 에러");
+                return;
+            }
+            else
+            {
+                particleController.PlayParticle();
+            }
         }
 
         moveInput = Input.GetAxis("Horizontal");
@@ -173,11 +190,19 @@ public class Player_MainMove : MonoBehaviour
 
     private void Jump()
     {
-        // 점프 사운드 출력
-        AudioManager.instance.PlaySFX(2);
-
         // 점프 : Y position _ rigidbody Y velocity를 점프 파워만큼
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, JumpForce);
+
+        // 점프 사운드 출력
+        if (AudioManager.instance == null)
+        {
+            Debug.LogWarning($"{nameof(AudioManager)}에 인스턴스 없음 : 점프 사운드 에러");
+            return;
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX(2);
+        }
     }
 
     private void PlayerMove()
